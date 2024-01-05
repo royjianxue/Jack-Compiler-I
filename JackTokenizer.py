@@ -6,7 +6,6 @@ class JackTokenizer:
     keywords = ['class', 'constructor', 'function', 'method', 'field', 'static', 'var', 'int', 'char', 'boolean', 'void', 'true', 'false', 'null', 'this', 'let', 'do', 'if', 'else', 'while', 'return']
 
     symbols = ['{', '}', '(', ')', '[', ']', '.', ',', ';', '+', '-', '*', '/', '&', '|', '<', '>', '=', '~']
-
     
 
     def __init__(self, input_file):
@@ -74,7 +73,6 @@ class JackTokenizer:
             for command in self.command_stream:
                 # if string contains item in symbol 
                 self.tokenize(command)
-
     #helper function
     def tokenize(self, command):
         """
@@ -140,7 +138,6 @@ class JackTokenizer:
         """
         return self.index <= len(self.token_stream) 
     
-
     def advance(self):
         """
         gets the next token from the input and makes it the current token
@@ -163,7 +160,6 @@ class JackTokenizer:
                 self.current_token = self.int_val()
             elif self.current_token_type == "STRING_CONST":
                 self.current_token = self.string_val()
-
 
     def token_type(self):
         """
@@ -203,7 +199,6 @@ class JackTokenizer:
 
         return self.current_token
 
-
     def identifier(self):
         """
         returns the string which is the current token. Should be called only if token_type is IDENTIFIER
@@ -223,12 +218,6 @@ class JackTokenizer:
         """
 
         return self.current_token
-
-    def write_xml(self, command):
-        pass
-
-
-
 
 if __name__ == "__main__":
 
