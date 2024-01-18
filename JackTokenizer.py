@@ -27,6 +27,7 @@ class JackTokenizer:
                 prep_tokens(input_file): takes the input_file and prepare and store tokens in token_stream array
 
         """
+
         self.command_stream = []
         self.current_command = ""
         self.token_stream = []
@@ -64,15 +65,22 @@ class JackTokenizer:
 
                     else:
                         if line_without_whitespace:
-                            self.command_stream.append(line_without_whitespace)                      
+                            self.command_stream.append(line_without_whitespace) 
+
                 if line_without_whitespace.endswith('*/'):
                     in_comment_block = True # set switch to true to indicate end of comment block
                     continue
-    
+
+            
+
+
             #tokenize every command_stream and store into token_stream
             for command in self.command_stream:
                 # if string contains item in symbol 
                 self.tokenize(command)
+
+            jack_file.close()
+            
     #helper function
     def tokenize(self, command):
         """
@@ -214,25 +222,8 @@ class JackTokenizer:
 
     def string_val(self):
         """
-        return the string value of the current token, without the opening and clising double quotes. Should be called only if token_type is STRING_CONST
+        return the string value of the current token, without the opening and closing double quotes. Should be called only if token_type is STRING_CONST
         """
 
         return self.current_token
 
-if __name__ == "__main__":
-
-    jk = JackTokenizer("Main.jack")
-   
-    for _ in range(len(jk.token_stream)):
-        jk.advance()
-        line = "<{0}> {1} </{2}>".format(jk.current_token_type, jk.current_token, jk.current_token_type)
-        print(line)
- 
-
-
-
-
-
-
-
-    
